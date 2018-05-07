@@ -1,0 +1,168 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: Validator</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">biblioteca.util</a> ]
+</div>
+
+<h1>Coverage Summary for Class: Validator (biblioteca.util)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Validator</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    60%
+  </span>
+  <span class="absValue">
+    (3/ 5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    62.8%
+  </span>
+  <span class="absValue">
+    (27/ 43)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package biblioteca.util;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import biblioteca.model.Carte;
+<i>4</i>&nbsp;
+<b class="nc"><i>5</i>&nbsp;public class Validator {</b>
+<i>6</i>&nbsp;	
+<i>7</i>&nbsp;	public static boolean isStringOK(String s) throws Exception{
+<b class="nc"><i>8</i>&nbsp;		boolean flag = s.matches(&quot;[a-zA-Z]+&quot;);</b>
+<b class="nc"><i>9</i>&nbsp;		if(flag == false)</b>
+<b class="nc"><i>10</i>&nbsp;			throw new Exception(&quot;String invalid&quot;);</b>
+<b class="nc"><i>11</i>&nbsp;		return flag;</b>
+<i>12</i>&nbsp;	}
+<i>13</i>&nbsp;	
+<i>14</i>&nbsp;	public static void validateCarte(Carte c)throws Exception{
+<i>15</i>&nbsp;
+<b class="fc"><i>16</i>&nbsp;		String message = &quot;&quot;;</b>
+<b class="fc"><i>17</i>&nbsp;		if(c.getCuvinteCheie()==null){</b>
+<i>18</i>&nbsp;
+<b class="nc"><i>19</i>&nbsp;			message += &quot;Lista cuvinte cheie vida&quot;;</b>
+<i>20</i>&nbsp;		}
+<b class="fc"><i>21</i>&nbsp;		if(c.getCuvinteCheie().size() &gt; 5){</b>
+<b class="nc"><i>22</i>&nbsp;			message += &quot;\n Maxim 5 cuvinte cheie !&quot;;</b>
+<i>23</i>&nbsp;		}
+<i>24</i>&nbsp;
+<b class="fc"><i>25</i>&nbsp;		if(c.getEditura().length() == 0 || c.getEditura().length() &gt; 255){</b>
+<b class="fc"><i>26</i>&nbsp;			message += &quot;\n Editura nu poate fi nula !&quot;;</b>
+<i>27</i>&nbsp;		}
+<i>28</i>&nbsp;
+<i>29</i>&nbsp;
+<b class="fc"><i>30</i>&nbsp;		if(c.getAutori()==null){</b>
+<b class="nc"><i>31</i>&nbsp;			message += &quot;\n Lista autori vida!&quot;;</b>
+<i>32</i>&nbsp;		}
+<b class="fc"><i>33</i>&nbsp;		if(!isOKString(c.getTitlu()) || c.getTitlu().length() &gt; 255 || c.getTitlu().length() == 0)</b>
+<b class="fc"><i>34</i>&nbsp;			message += &quot;\n Titlu invalid!&quot;;</b>
+<b class="fc"><i>35</i>&nbsp;		for(String s:c.getAutori()){</b>
+<b class="fc"><i>36</i>&nbsp;			if(!isOKString(s))</b>
+<b class="nc"><i>37</i>&nbsp;				message += &quot;\n &quot; + s + &quot; autor invalid!&quot;;</b>
+<b class="fc"><i>38</i>&nbsp;		}</b>
+<b class="fc"><i>39</i>&nbsp;		for(String s:c.getCuvinteCheie()){</b>
+<b class="fc"><i>40</i>&nbsp;			if(!isOKString(s))</b>
+<b class="nc"><i>41</i>&nbsp;				message += &quot;\n &quot; + c +  &quot; cuvant cheie invalid!&quot;;</b>
+<b class="fc"><i>42</i>&nbsp;		}</b>
+<b class="fc"><i>43</i>&nbsp;		if(!Validator.isNumber(c.getAnAparitie())) {</b>
+<i>44</i>&nbsp;
+<i>45</i>&nbsp;
+<b class="fc"><i>46</i>&nbsp;			message +=&quot;\n An aparitie invalid!&quot;;</b>
+<i>47</i>&nbsp;		}
+<i>48</i>&nbsp;		else{
+<b class="fc"><i>49</i>&nbsp;			int an = Integer.parseInt(c.getAnAparitie());</b>
+<i>50</i>&nbsp;
+<b class="fc"><i>51</i>&nbsp;			if(an &lt; 0){</b>
+<b class="nc"><i>52</i>&nbsp;				message += &quot;An aparitie mai mare decat 0&quot;;</b>
+<i>53</i>&nbsp;			}
+<b class="fc"><i>54</i>&nbsp;			if(an &gt; 2018){</b>
+<b class="fc"><i>55</i>&nbsp;				message +=&quot;\n An aparitie trebuie sa fie mai mic decat an curent&quot;;</b>
+<i>56</i>&nbsp;			}
+<i>57</i>&nbsp;
+<i>58</i>&nbsp;
+<i>59</i>&nbsp;		}
+<i>60</i>&nbsp;
+<b class="fc"><i>61</i>&nbsp;		if(message.length() &gt; 0){</b>
+<b class="fc"><i>62</i>&nbsp;			throw new Exception(message);</b>
+<i>63</i>&nbsp;		}
+<i>64</i>&nbsp;
+<i>65</i>&nbsp;
+<b class="fc"><i>66</i>&nbsp;	}</b>
+<i>67</i>&nbsp;	
+<i>68</i>&nbsp;	public static boolean isNumber(String s){
+<b class="fc"><i>69</i>&nbsp;		return s.matches(&quot;[0-9]+&quot;);</b>
+<i>70</i>&nbsp;	}
+<i>71</i>&nbsp;	
+<i>72</i>&nbsp;	public static boolean isOKString(String s){
+<b class="fc"><i>73</i>&nbsp;		String []t = s.split(&quot; &quot;);</b>
+<b class="fc"><i>74</i>&nbsp;		if(t.length==2){</b>
+<b class="nc"><i>75</i>&nbsp;			boolean ok1 = t[0].matches(&quot;[a-zA-Z]+&quot;);</b>
+<b class="nc"><i>76</i>&nbsp;			boolean ok2 = t[1].matches(&quot;[a-zA-Z]+&quot;);</b>
+<b class="nc"><i>77</i>&nbsp;			if(ok1==ok2 &amp;&amp; ok1==true){</b>
+<b class="nc"><i>78</i>&nbsp;				return true;</b>
+<i>79</i>&nbsp;			}
+<b class="nc"><i>80</i>&nbsp;			return false;</b>
+<i>81</i>&nbsp;		}
+<b class="fc"><i>82</i>&nbsp;		return s.matches(&quot;[a-zA-Z]+&quot;);</b>
+<i>83</i>&nbsp;	}
+<i>84</i>&nbsp;	
+<i>85</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2018-04-23 13:00</div>
+</div>
+</body>
+</html>

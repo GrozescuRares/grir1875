@@ -136,7 +136,7 @@ public class Consola {
 			e.printStackTrace();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.print(e.getMessage());
 		}
 	}
 
