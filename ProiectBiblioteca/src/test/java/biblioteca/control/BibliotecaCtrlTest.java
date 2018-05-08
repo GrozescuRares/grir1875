@@ -232,6 +232,27 @@ public class BibliotecaCtrlTest {
         }
     }
 
+    @Test
+    public void BB1() throws Exception {
+        setUp();
+
+        List<Carte> carti = ctrl.getCartiOrdonateDinAnul("1973");
+        assertTrue(carti.size() == 2);
+    }
+
+    @Test
+    public void BB2() throws Exception {
+        setUp();
+
+        try {
+            List<Carte> carti = ctrl.getCartiOrdonateDinAnul("1973dds");
+            assertTrue(false);
+        }
+        catch (Exception ex){
+            assertTrue(true);
+        }
+    }
+
 
 
 
